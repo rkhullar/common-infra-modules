@@ -7,7 +7,7 @@ locals {
   enable_jwt_authorizer   = var.flags.enable_jwt_authorizer && var.jwt_auth != null
   lambda_arn_parts        = compact([data.aws_lambda_function.default.arn, var.lambda_function_alias])
   lambda_arn              = join(":", local.lambda_arn_parts)
-  allowed_headers_default = set(var.flags.enable_default_allowed_headers ? ["authorization"] : [])
+  allowed_headers_default = var.flags.enable_default_allowed_headers ? ["authorization"] : []
   allowed_headers         = setunion(var.allowed_headers, local.allowed_headers_default)
 }
 
