@@ -24,12 +24,13 @@ variable "flags" {
   default  = {}
   nullable = false
   type = object({
-    auto_deploy              = optional(bool, true)
-    disable_default_endpoint = optional(bool, true)
-    create_lambda_permission = optional(bool, true)
-    enable_jwt_authorizer    = optional(bool, true)
-    enable_proxy_route       = optional(bool, true)
-    enable_logs              = optional(bool, true)
+    auto_deploy                    = optional(bool, true)
+    disable_default_endpoint       = optional(bool, true)
+    create_lambda_permission       = optional(bool, true)
+    enable_jwt_authorizer          = optional(bool, true)
+    enable_proxy_route             = optional(bool, true)
+    enable_logs                    = optional(bool, true)
+    enable_default_allowed_headers = optional(bool, true)
   })
 }
 
@@ -50,6 +51,12 @@ variable "allowed_methods" {
 }
 
 variable "allowed_origins" {
+  type     = set(string)
+  default  = []
+  nullable = false
+}
+
+variable "allowed_headers" {
   type     = set(string)
   default  = []
   nullable = false
